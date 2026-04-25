@@ -130,14 +130,30 @@ class _HomeContentState extends State<HomeContent> {
             child: Column(
               children: [
                 const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(Icons.fastfood, color: Colors.orange, size: 30),
-                    SizedBox(width: 10),
-                    Text('Canon Food', style: TextStyle(fontSize: 26, fontWeight: FontWeight.w900, color: Colors.white, letterSpacing: 1.2)),
-                  ],
-                ),
+              // --- PASTE THE NEW CODE HERE ---
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/logo.png', // Ensure this file exists in assets/images/
+                    height: 40,
+                    errorBuilder: (context, error, stackTrace) {
+                      // This shows an icon if your image file is missing or named wrong
+                      return const Icon(Icons.fastfood, color: Colors.orange, size: 30);
+                    },
+                  ),
+                  const SizedBox(width: 10),
+                  const Text(
+                    'Canon Food',
+                    style: TextStyle(
+                      fontSize: 26, 
+                      fontWeight: FontWeight.w900, 
+                      color: Colors.white, 
+                      letterSpacing: 1.2
+                    ),
+                  ),
+                ],
+              ),
                 const SizedBox(height: 10),
                 const Text("Delicious food delivered to your door", style: TextStyle(color: Colors.white70, fontSize: 14)),
               ],
@@ -243,7 +259,7 @@ class _HomeContentState extends State<HomeContent> {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: [ 
             ClipRRect(
               borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
               child: Image.network(restaurant.imageUrl, height: 160, width: double.infinity, fit: BoxFit.cover),
